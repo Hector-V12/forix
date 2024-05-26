@@ -10,6 +10,7 @@ import AccountSettings from './Views/AccountSettings';
 import Homepage from './Views/Homepage';
 import Explore from './Views/Explore';
 import UserProfile from './Views/UserProfile';
+import Preferences from './Views/Preferences';
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
             <Route path="/postCreation" element={<PostCreation />} />
             <Route path="/accountSettings" element={<AccountSettings />} />
             <Route path="/user/:userId" element={<UserProfile />} />
+            <Route path="/preferences" element={<Preferences />} />
+            <Route path="*" element={<div>404 Not Found</div>} />
           </Routes></BrowserRouter>
       </main>
     </body>
