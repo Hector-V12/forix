@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axiosInstance from '../context/AxiosInstance';
 
 interface User {
     id: number;
@@ -13,7 +14,7 @@ function OnlineUsers() {
     const [showOffline, setShowOffline] = useState(false);
 
     useEffect(() => {
-        axios.get('https://api.forix-isep.com/users/online')
+        axiosInstance.get('https://api.forix-isep.com/users/online')
             .then(response => setOnlineUsers(response.data))
             .catch(error => console.error('Error fetching online users:', error));
     }, []);

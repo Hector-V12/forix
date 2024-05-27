@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import axiosInstance from '../context/AxiosInstance';
 
 interface User {
     firstName: string;
@@ -10,7 +11,7 @@ function UserInfo({ userId }: { userId: number }) {
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
-        axios.get(`https://api.forix-isep.com/users/${userId}`)
+        axiosInstance.get(`https://api.forix-isep.com/users/${userId}`)
             .then(response => setUser(response.data))
             .catch(error => console.error('Error fetching user info:', error));
     }, [userId]);

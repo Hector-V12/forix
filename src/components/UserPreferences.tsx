@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import axiosInstance from '../context/AxiosInstance';
 
 interface Preference {
     id: number;
@@ -10,7 +11,7 @@ function UserPreferences({ userId }: { userId: number }) {
     const [preferences, setPreferences] = useState<Preference[]>([]);
 
     useEffect(() => {
-        axios.get(`https://api.forix-isep.com/subjects/${userId}`)
+        axiosInstance.get(`https://api.forix-isep.com/subjects/${userId}`)
             .then(response => setPreferences(response.data))
             .catch(error => console.error('Error fetching user preferences:', error));
     }, [userId]);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axiosInstance from '../context/AxiosInstance';
 
 interface User {
     id: number;
@@ -12,7 +13,7 @@ function FriendRecommendations() {
     const [friends, setFriends] = useState<User[]>([]);
 
     useEffect(() => {
-        axios.get('https://api.forix-isep.com/users/friendRecommendation', {
+        axiosInstance.get('https://api.forix-isep.com/users/friendRecommendation', {
             params: {
                 depth: 1,
                 commonFriendsWeight: 1,

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import axiosInstance from '../context/AxiosInstance';
 
 interface Post {
     id: number;
@@ -12,7 +13,7 @@ function UserPosts({ userId }: { userId: number }) {
     const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
-        axios.get(`https://api.forix-isep.com/posts/${userId}`)
+        axiosInstance.get(`https://api.forix-isep.com/posts/${userId}`)
             .then(response => setPosts(response.data))
             .catch(error => console.error('Error fetching user posts:', error));
     }, [userId]);
