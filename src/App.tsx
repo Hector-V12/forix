@@ -19,13 +19,13 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/passwordLost" element={<LostPasswordPage />} />
 
           <Route element={<ProtectedRoute />}>
             <Route element={<ProtectedLayout />}>
+              <Route path="/" element={<Homepage />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/postCreation" element={<PostCreation />} />
               <Route path="/accountSettings" element={<AccountSettings />} />
