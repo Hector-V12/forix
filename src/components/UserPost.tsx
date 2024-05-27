@@ -12,7 +12,7 @@ function UserPosts({ userId }: { userId: number }) {
     const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
-        axios.get(`http://api.forix-isep.com/posts/${userId}`)
+        axios.get(`https://api.forix-isep.com/posts/${userId}`)
             .then(response => setPosts(response.data))
             .catch(error => console.error('Error fetching user posts:', error));
     }, [userId]);

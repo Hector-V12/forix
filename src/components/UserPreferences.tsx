@@ -10,7 +10,7 @@ function UserPreferences({ userId }: { userId: number }) {
     const [preferences, setPreferences] = useState<Preference[]>([]);
 
     useEffect(() => {
-        axios.get(`http://api.forix-isep.com/subjects/${userId}`)
+        axios.get(`https://api.forix-isep.com/subjects/${userId}`)
             .then(response => setPreferences(response.data))
             .catch(error => console.error('Error fetching user preferences:', error));
     }, [userId]);

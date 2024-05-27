@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 function AccountSettings() {
     const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+    const { logout } = useAuth();
 
     const handleNotificationToggle = () => {
         setNotificationsEnabled(!notificationsEnabled);
+    };
+
+    const handleLogout = () => {
+        logout();
+        window.location.href = '/login';
     };
 
     return (
@@ -12,7 +19,7 @@ function AccountSettings() {
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl relative">
                 <div className="absolute top-4 right-4">
                     <img
-                        src="https://via.placeholder.com/50"
+                        src="httpss://via.placeholder.com/50"
                         alt="User Avatar"
                         className="h-12 w-12 rounded-full"
                     />
@@ -82,6 +89,12 @@ function AccountSettings() {
                         </button>
                     </div>
                 </form>
+                <button
+                    onClick={handleLogout}
+                    className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+                >
+                    Logout
+                </button>
             </div>
         </div>
     );

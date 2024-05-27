@@ -12,7 +12,7 @@ function FriendRecommendations() {
     const [friends, setFriends] = useState<User[]>([]);
 
     useEffect(() => {
-        axios.get('http://api.forix-isep.com/users/friendRecommendation', {
+        axios.get('https://api.forix-isep.com/users/friendRecommendation', {
             params: {
                 depth: 1,
                 commonFriendsWeight: 1,

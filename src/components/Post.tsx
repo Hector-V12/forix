@@ -14,7 +14,7 @@ function Posts() {
     const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
-        axios.get('http://api.forix-isep.com/posts')
+        axios.get('https://api.forix-isep.com/posts')
             .then(response => setPosts(response.data))
             .catch(error => console.error('Error fetching posts:', error));
     }, []);

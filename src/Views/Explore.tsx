@@ -25,7 +25,7 @@ function Explore() {
                             onChange={(e) => setDepth(Number(e.target.value))}
                             className="w-full"
                         />
-                        <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-8 bg-white p-2 rounded shadow text-center">
+                        <div className="absolute left-1/2 transform -translate-x-1/2 bg-white p-2 rounded shadow text-center">
                             {depth}
                         </div>
                     </div>

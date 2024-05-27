@@ -14,7 +14,7 @@ function Posts({ depth }: { depth: number }) {
     const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
-        axios.get('http://api.forix-isep.com/posts/feed', {
+        axios.get('https://api.forix-isep.com/posts/feed', {
             params: {
                 depth,
                 recentWeight: 1,
