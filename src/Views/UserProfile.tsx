@@ -83,7 +83,7 @@ const UserProfile: React.FC = () => {
 
     const handleAddFriend = () => {
         if (!isFriend && userId) {
-            axiosInstance.post(`https://api.forix-isep.com/users/friend/${userId}`)
+            axiosInstance.post(`https://api.forix-isep.com/users/addFriend/${userId}`)
                 .then(response => {
                     setIsFriend(true);
                     alert('Ami ajouté avec succès !'); // Afficher une alerte de succès
