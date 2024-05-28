@@ -19,6 +19,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         try {
             const response = await axios.post('https://api.forix-isep.com/auth', { id, password });
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('Id', id);
             setIsAuthenticated(true);
         } catch (error) {
             console.error('Login failed:', error);
@@ -30,6 +31,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         try {
             const response = await axios.post('https://api.forix-isep.com/auth/register', { id, email, name, lastName, password });
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('Id', id);
             setIsAuthenticated(true);
         } catch (error) {
             console.error('Registration failed:', error);
@@ -40,6 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     function logout() {
         setIsAuthenticated(false);
         localStorage.removeItem('token');
+        localStorage.removeItem('Id');
     }
 
     return (

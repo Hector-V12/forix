@@ -9,8 +9,8 @@ interface User {
     lastName: string;
 }
 
-function UserInfo({ userId }: { userId: number }) {
-    const [user, setUser] = useState<User | null>(null);
+function UserInfo({ userId }: { userId: string }) {
+    const [user, setUser] = useState<User>();
 
     useEffect(() => {
         axiosInstance.get(`https://api.forix-isep.com/users/${userId}`)

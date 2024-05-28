@@ -17,14 +17,10 @@ function AccountSettings() {
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl relative">
-                <div className="absolute top-4 right-4">
-                    <img
-                        src="httpss://via.placeholder.com/50"
-                        alt="User Avatar"
-                        className="h-12 w-12 rounded-full"
-                    />
+                <div className="flex justify-between">
+                    <h1 className="text-2xl font-bold mb-4">Account Settings</h1>
+                    <div className="bg-gray-300 h-10 w-10 rounded-full mr-4"></div>
                 </div>
-                <h1 className="text-2xl font-bold mb-4">Account Settings</h1>
                 <form>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">

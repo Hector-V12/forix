@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../context/AxiosInstance';
+
+
 
 function PostCreation() {
     const [postText, setPostText] = useState('');
-    const userId = localStorage.getItem('userId') || 'defaultUserId'; // Remplacez 'defaultUserId' par une valeur par défaut appropriée
+    const userId = localStorage.getItem('Id'); // Remplacez 'defaultUserId' par une valeur par défaut appropriée
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -14,7 +16,7 @@ function PostCreation() {
         };
 
         try {
-            const response = await axios.post('https://api.forix-isep.com/posts', postData);
+            const response = await axiosInstance.post('https://api.forix-isep.com/posts', postData);
             console.log('Post created successfully:', response.data);
             // Réinitialiser le champ de texte après la création du post
             setPostText('');

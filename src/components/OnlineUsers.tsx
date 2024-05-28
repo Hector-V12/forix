@@ -13,11 +13,11 @@ function OnlineUsers() {
     const [onlineUsers, setOnlineUsers] = useState<User[]>([]);
     const [showOffline, setShowOffline] = useState(false);
 
-    useEffect(() => {
-        axiosInstance.get('https://api.forix-isep.com/users/online')
-            .then(response => setOnlineUsers(response.data))
-            .catch(error => console.error('Error fetching online users:', error));
-    }, []);
+    // useEffect(() => {
+    //     axiosInstance.get('https://api.forix-isep.com/users/online')
+    //         .then(response => setOnlineUsers(response.data))
+    //         .catch(error => console.error('Error fetching online users:', error));
+    // }, []);
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-xs">
