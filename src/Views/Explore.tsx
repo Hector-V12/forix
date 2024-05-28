@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import FriendRecommendationsWithCursor from '../components/FriendsRecommendationWCursors';
 import PostWithCursor from '../components/PostWCursor';
 import OnlineUsers from '../components/OnlineUsers';
+import StickyPostCreation from '../components/StickyPostCreation';
 
 function Explore() {
     const [depth, setDepth] = useState(1);
@@ -13,6 +14,7 @@ function Explore() {
 
     return (
         <div className="min-h-screen bg-gray-100">
+            <StickyPostCreation />
             <div className="container mx-auto py-8">
                 <div className="mb-8 text-center">
                     <h2 className="text-xl font-semibold">Proximité des propositions</h2>

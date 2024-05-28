@@ -45,7 +45,10 @@ function Header() {
         }
     };
 
-
+    const handleMouseEnter = (index: number) => {
+        setSelectedIndex(index);
+    };
+    
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'ArrowDown') {
             setSelectedIndex((prevIndex) => (prevIndex + 1) % searchResults.length);
@@ -85,6 +88,7 @@ function Header() {
                             key={result.id} 
                             className={`px-4 py-2 hover:bg-gray-200 cursor-pointer ${index === selectedIndex ? 'bg-gray-300' : ''}`} // Highlight the selected result
                             onClick={() => handleResultClick(result.id)}
+                            onMouseEnter={() => handleMouseEnter(index)}
                         >
                             {result.name} {result.lastName}
                         </li>

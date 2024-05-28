@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import axiosInstance from '../context/AxiosInstance';
 
@@ -69,9 +69,6 @@ const checkIfFriend = (friends: Friend[], userId: string) => {
 const UserProfile: React.FC = () => {
     const location = useLocation();
     const userId = new URLSearchParams(location.search).get('userId');
-    //const {pathname} = useLocation();
-    //const userId = pathname.split("/").at(-1);
-    //useless here
     const loggedUserId = localStorage.getItem('userId');
     const [user, setUser] = useState<User | null>(null); // Initialiser avec null
     const [isFriend, setIsFriend] = useState(false);
@@ -89,9 +86,11 @@ const UserProfile: React.FC = () => {
             axiosInstance.post(`https://api.forix-isep.com/users/friend/${userId}`)
                 .then(response => {
                     setIsFriend(true);
+                    alert('Ami ajouté avec succès !'); // Afficher une alerte de succès
                 })
                 .catch(error => {
                     console.error('Error adding friend:', error);
+                    alert("Erreur lors de l'ajout de l'ami."); // Afficher une alerte d'échec
                 });
         }
     };
@@ -107,13 +106,21 @@ const UserProfile: React.FC = () => {
                 <div className="w-24 h-24 bg-gray-300 rounded-full"></div>
                 <div className="ml-4">
                     <h1 className="text-2xl font-bold">{`${user.name} ${user.lastName}`}</h1>
-                    <button
-                        onClick={handleAddFriend}
-                        className={`mt-2 px-4 py-2 rounded ${isFriend ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 text-white'}`}
-                        disabled={isFriend}
-                    >
-                        {isFriend ? 'Déjà ami(e)' : 'Ajoutez-en ami'}
-                    </button>
+                    {userId === loggedUserId ? (
+                        <Link to="/accountSettings">
+                            <button className="mt-2 px-4 py-2 bg-green-500 text-white rounded">
+                                Account Settings
+                            </button>
+                        </Link>
+                    ) : (
+                        <button
+                            onClick={handleAddFriend}
+                            className={`mt-2 px-4 py-2 rounded ${isFriend ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 text-white'}`}
+                            disabled={isFriend}
+                        >
+                            {isFriend ? 'Déjà ami(e)' : 'Ajoutez-en ami'}
+                        </button>
+                    )}
                 </div>
             </div>
             <div className="flex mt-4 space-x-2">
@@ -140,5 +147,6 @@ const UserProfile: React.FC = () => {
         </div>
     );
 };
+
 
 export default UserProfile;

@@ -2,10 +2,12 @@ import React from 'react';
 import FriendRecommendations from '../components/FriendRecommendations';
 import Post from '../components/Post';
 import OnlineUsers from '../components/OnlineUsers';
+import StickyPostCreation from '../components/StickyPostCreation';
 
 function Homepage() {
     return (
         <div className="min-h-screen bg-gray-100">
+            <StickyPostCreation />
             <div className="container mx-auto py-8 flex space-x-4">
                 <div className="w-1/4">
                     <OnlineUsers />
