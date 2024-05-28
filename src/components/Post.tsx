@@ -58,9 +58,11 @@ function Posts() {
                                     </div>
                                 ) : (
                                     <div className="flex items-center">
-                                        <Link to={`/user/${post.userId}`} className="bg-gray-300 h-10 w-10 rounded-full mr-4"></Link>
+                                        <Link to={`/user?userId=${post.userId}`} className="bg-gray-300 h-10 w-10 rounded-full mr-4"></Link>
                                         <div>
-                                            <Link to={`/user/${post.userId}`} className="font-bold"><UserInfo userId={post.userId} /></Link>
+                                        <Link to={`/user?userId=${post.userId}`} className="font-bold">
+                                            <UserInfo userId={post.userId} />
+                                        </Link>
                                         </div>
                                     </div>
                                 )}

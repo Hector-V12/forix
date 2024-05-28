@@ -67,9 +67,10 @@ const checkIfFriend = (friends: Friend[], userId: string) => {
 };
 
 const UserProfile: React.FC = () => {
-    const {pathname} = useLocation();
-    //const userId = new URLSearchParams(location.search).get('userId');
-    const userId = pathname.split("/").at(-1);
+    const location = useLocation();
+    const userId = new URLSearchParams(location.search).get('userId');
+    //const {pathname} = useLocation();
+    //const userId = pathname.split("/").at(-1);
     //useless here
     const loggedUserId = localStorage.getItem('userId');
     const [user, setUser] = useState<User | null>(null); // Initialiser avec null
@@ -85,7 +86,7 @@ const UserProfile: React.FC = () => {
 
     const handleAddFriend = () => {
         if (!isFriend && userId) {
-            axios.post(`https://api.forix-isep.com/users/friend/${userId}`)
+            axiosInstance.post(`https://api.forix-isep.com/users/friend/${userId}`)
                 .then(response => {
                     setIsFriend(true);
                 })
@@ -101,7 +102,7 @@ const UserProfile: React.FC = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md mt-10">
             <div className="flex items-center justify-center">
                 <div className="w-24 h-24 bg-gray-300 rounded-full"></div>
                 <div className="ml-4">
@@ -129,13 +130,12 @@ const UserProfile: React.FC = () => {
                             <span className="ml-2 font-bold">{user.name}</span>
                         </div>
                         <p>{post.postText}</p>
-                        <div className="mt-2 bg-gray-200 h-32 flex items-center justify-center">Image</div>
                         <div className="mt-2 flex space-x-4">
                             <button className="px-4 py-2 bg-blue-500 text-white rounded">Like</button>
                             <button className="px-4 py-2 bg-blue-500 text-white rounded">Super like</button>
                         </div>
                     </div>
-                ))}
+                )).reverse()}
             </div>
         </div>
     );

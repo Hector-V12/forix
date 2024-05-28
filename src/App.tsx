@@ -29,7 +29,7 @@ function App() {
               <Route path="/explore" element={<Explore />} />
               <Route path="/postCreation" element={<PostCreation />} />
               <Route path="/accountSettings" element={<AccountSettings />} />
-              <Route path="/user/:userId" element={<UserProfile />} />
+              <Route path="/user" element={<UserProfile />} />
               <Route path="/preferences" element={<Preferences />} />
             </Route>
           </Route>
