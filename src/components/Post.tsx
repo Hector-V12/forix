@@ -73,7 +73,7 @@ function Posts() {
                         </button>
                     </div>
                 );
-            })}
+            }).reverse()}
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import axiosInstance from '../context/AxiosInstance';
 
 // Interface pour les données de publication
 interface Post {
@@ -40,7 +41,8 @@ interface User {
 const fetchUserData = async (userId: string, setUser: React.Dispatch<React.SetStateAction<User | null>>, checkIfFriend: (friends: Friend[], userId: string) => void) => {
     try {
         // Récupérer les données de l'utilisateur à afficher
-        const userResponse = await axios.get(`https://api.forix-isep.com/users/${userId}`);
+        const userResponse = await axiosInstance.get(`https://api.forix-isep.com/users/${userId}`);
+        console.log(userResponse.data)
         setUser(userResponse.data);
     } catch (error) {
         console.error('Error fetching user data:', error);
@@ -50,7 +52,7 @@ const fetchUserData = async (userId: string, setUser: React.Dispatch<React.SetSt
 // Fonction pour vérifier si l'utilisateur à afficher est déjà un ami
 const fetchLoggedUserData = async (loggedUserId: string, userId: string, checkIfFriend: (friends: Friend[], userId: string) => void) => {
     try {
-        const loggedUserResponse = await axios.get(`https://api.forix-isep.com/users/${loggedUserId}`);
+        const loggedUserResponse = await axiosInstance.get(`https://api.forix-isep.com/users/${loggedUserId}`);
         const loggedUser = loggedUserResponse.data;
         checkIfFriend(loggedUser.friends, userId);
     } catch (error) {
@@ -65,19 +67,21 @@ const checkIfFriend = (friends: Friend[], userId: string) => {
 };
 
 const UserProfile: React.FC = () => {
-    const location = useLocation();
-    const userId = new URLSearchParams(location.search).get('userId');
+    const {pathname} = useLocation();
+    //const userId = new URLSearchParams(location.search).get('userId');
+    const userId = pathname.split("/").at(-1);
+    //useless here
     const loggedUserId = localStorage.getItem('userId');
     const [user, setUser] = useState<User | null>(null); // Initialiser avec null
     const [isFriend, setIsFriend] = useState(false);
-
+    
     useEffect(() => {
-        if (userId && loggedUserId) {
+        if (userId) {
             // Récupérer les données utilisateur et vérifier l'amitié
             fetchUserData(userId, setUser, (friends, userId) => setIsFriend(checkIfFriend(friends, userId)));
-            fetchLoggedUserData(loggedUserId, userId, (friends, userId) => setIsFriend(checkIfFriend(friends, userId)));
+            //fetchLoggedUserData(loggedUserId, userId, (friends, userId) => setIsFriend(checkIfFriend(friends, userId)));
         }
-    }, [userId, loggedUserId]);
+    }, [userId]);
 
     const handleAddFriend = () => {
         if (!isFriend && userId) {
