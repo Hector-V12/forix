@@ -76,7 +76,7 @@ function PostsWCursor({ depth }: { depth: number }) {
                         Like
                     </button>
                 </div>
-            ))}
+            )).reverse()}
         </div>
     );
 }
