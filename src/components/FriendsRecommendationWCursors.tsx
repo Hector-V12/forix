@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 interface User {
     id: number;
     name: string;
-    interests: string[];
+    lastName: string;
 }
+
 
 function FriendRecommendations({ depth }: { depth: number }) {
     const [friends, setFriends] = useState<User[]>([]);
@@ -31,14 +32,7 @@ function FriendRecommendations({ depth }: { depth: number }) {
                     <div className="flex items-center">
                         <Link to={`/user/${friend.id}`} className="bg-gray-300 h-10 w-10 rounded-full mr-4"></Link>
                         <div>
-                            <Link to={`/user/${friend.id}`} className="font-bold">{friend.name}</Link>
-                            <div className="flex flex-wrap">
-                                {friend.interests.map((interest, index) => (
-                                    <span key={index} className="bg-gray-200 rounded-full px-2 py-1 text-xs mr-2 mt-2">
-                                        {interest}
-                                    </span>
-                                ))}
-                            </div>
+                            <Link to={`/user/${friend.id}`} className="font-bold">{friend.name} {friend.lastName}</Link>
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ function Header() {
     return (
         <header className="bg-purple-800 text-white py-2 px-4 flex items-center justify-between">
             <div className="flex items-center space-x-4">
-                <img src={logo} alt="Logo" className="h-10 w-10" />
+                <Link to="/"><img src={logo} alt="Logo" className="h-10 w-10" /></Link>
                 <span className="font-bold text-xl">FORIX</span>
             </div>
             <div className="flex-grow mx-4">

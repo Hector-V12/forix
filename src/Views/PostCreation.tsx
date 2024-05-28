@@ -29,12 +29,6 @@ function PostCreation() {
                 <h1 className="text-2xl font-bold mb-4 text-center">Post something...</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="theme">
-                            Choose a theme:
-                        </label>
-                        <button type="button" className="bg-purple-800 text-white py-2 px-4 rounded">Theme</button>
-                    </div>
-                    <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="message">
                             Writing zone
                         </label>

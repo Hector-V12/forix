@@ -1,10 +1,32 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import UserInfo from '../components/UserInfo';
-import UserPreferences from '../components/UserPreferences';
-import UserPosts from '../components/UserPost';
 
-function UserProfile() {
+interface User {
+    id: string;
+    email: string;
+    name: string;
+    lastName: string;
+}
+
+function UserProfile({ userId }: { userId: number }) {
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        axiosInstance.get(`https://api.forix-isep.com/users/${userId}`)
+            .then(response => setUser(response.data))
+            .catch(error => console.error('Error fetching user info:', error));
+    }, [userId]);
+
+    return (
+        <div className="text-center">
+            {user && (
+                <h1 className="text-2xl font-bold">{`${user.name} ${user.lastName}`}</h1>
+            )}
+        </div>
+    );
+}
+
+function () {
     const { userId } = useParams<{ userId: string }>();
 
     if (!userId) {
@@ -14,9 +36,6 @@ function UserProfile() {
     return (
         <div className="min-h-screen bg-gray-100 p-8">
             <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
-                <UserInfo userId={parseInt(userId, 10)} />
-                <UserPreferences userId={parseInt(userId, 10)} />
-                <UserPosts userId={parseInt(userId, 10)} />
             </div>
         </div>
     );

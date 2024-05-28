@@ -3,7 +3,9 @@ import axios from 'axios';
 import axiosInstance from '../context/AxiosInstance';
 
 interface User {
-    firstName: string;
+    id: string;
+    email: string;
+    name: string;
     lastName: string;
 }
 
@@ -18,9 +20,8 @@ function UserInfo({ userId }: { userId: number }) {
 
     return (
         <div className="text-center">
-            <div className="bg-gray-300 h-32 w-32 rounded-full mx-auto mb-4"></div>
             {user && (
-                <h1 className="text-2xl font-bold">{`${user.firstName} ${user.lastName}`}</h1>
+                <h1 className="text-2xl font-bold">{`${user.name} ${user.lastName}`}</h1>
             )}
         </div>
     );
