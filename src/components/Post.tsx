@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import axiosInstance from '../context/AxiosInstance';
+import { Link } from 'react-router-dom';
 import UserInfo from './UserInfo';
 
 interface Post {
     id: number;
     userId: string;
     postText: string;
+    createdAt: string; // Ajout du champ createdAt
 }
 
 function Posts() {
@@ -20,11 +20,30 @@ function Posts() {
             .catch(error => console.error('Error fetching posts:', error));
     }, []);
 
+    const formatDate = (dateString: string) => {
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const month = date.toLocaleString('default', { month: 'long' });
+        const year = date.getFullYear();
+        
+        // Ajouter le suffixe pour le jour (1st, 2nd, 3rd, etc.)
+        const getDayWithSuffix = (day: number) => {
+            if (day > 3 && day < 21) return `${day}th`;
+            switch (day % 10) {
+                case 1: return `${day}st`;
+                case 2: return `${day}nd`;
+                case 3: return `${day}rd`;
+                default: return `${day}th`;
+            }
+        };
+
+        return `${getDayWithSuffix(day)} ${month} ${year}`;
+    };
+
     return (
         <div className="space-y-4">
-            {posts.map(post => {
+            {posts.reverse().map(post => {
                 const isCurrentUser = post.userId.toString() === loggedUserId;
-                console.log(`User ID: ${post.userId}, Logged User Id : ${loggedUserId} Is Current User: ${isCurrentUser}`);
 
                 return (
                     <div key={post.id} className="bg-white p-6 rounded-lg shadow-md">
@@ -48,12 +67,13 @@ function Posts() {
                             </div>
                         </div>
                         <p>{post.postText}</p>
+                        <p className="mt-4 text-gray-600">{formatDate(post.createdAt)}</p>
                         <button className="mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-800">
                             Like
                         </button>
                     </div>
                 );
-            }).reverse()}
+            })}
         </div>
     );
 }

@@ -10,7 +10,7 @@ interface Post {
     postText: string;
 }
 
-function Posts({ depth }: { depth: number }) {
+function PostsWCursor({ depth }: { depth: number }) {
     const [posts, setPosts] = useState<Post[]>([]);
     const loggedUserId = localStorage.getItem('Id');
 
@@ -60,4 +60,4 @@ function Posts({ depth }: { depth: number }) {
     );
 }
 
-export default Posts;
+export default PostsWCursor;

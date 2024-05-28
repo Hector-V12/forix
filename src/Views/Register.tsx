@@ -20,7 +20,7 @@ function RegisterPage() {
         }
         try {
             await register(id, email, name, lastName, password);
-            window.location.href = '/';
+            window.location.href = '/preferences';
         } catch (error) {
             alert('Registration failed');
         }
