@@ -30,7 +30,7 @@ function PostsWCursor({ depth }: { depth: number }) {
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
         const day = date.getDate();
-        const month = date.toLocaleString('default', { month: 'long' });
+        const month = date.toLocaleString('en-US', { month: 'long' });
         const year = date.getFullYear();
 
         // Ajouter le suffixe pour le jour (1st, 2nd, 3rd, etc.)

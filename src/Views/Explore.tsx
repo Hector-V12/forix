@@ -17,7 +17,7 @@ function Explore() {
             <StickyPostCreation />
             <div className="container mx-auto py-8">
                 <div className="mb-8 text-center">
-                    <h2 className="text-xl font-semibold">Proximité des propositions</h2>
+                    <h2 className="text-xl font-semibold">Proposition's proximity</h2>
                     <div className="relative w-full">
                         <input
                             type="range"
@@ -39,7 +39,7 @@ function Explore() {
                         onClick={handleSaveDepth}
                         className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
                     >
-                        Enregistrer
+                        Save
                     </button>
                 </div>
                 <div className="flex space-x-4">

@@ -22,7 +22,7 @@ function OnlineUsers() {
     return (
         <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-xs">
             <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold">En ligne</h2>
+                <h2 className="text-xl font-semibold">Online</h2>
                 <label className="flex items-center">
                     <input
                         type="checkbox"
@@ -30,7 +30,7 @@ function OnlineUsers() {
                         onChange={() => setShowOffline(!showOffline)}
                         className="mr-2"
                     />
-                    Afficher hors ligne
+                    Display offline
                 </label>
             </div>
             {onlineUsers.map(user => (

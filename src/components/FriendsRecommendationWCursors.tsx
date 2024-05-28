@@ -27,7 +27,7 @@ function FriendRecommendations({ depth }: { depth: number }) {
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-xs">
-            <h2 className="text-xl font-semibold mb-4">Suggestions d'amis</h2>
+            <h2 className="text-xl font-semibold mb-4">Friend Recommendations</h2>
             {friends.map(friend => (
                 <div key={friend.id} className="mb-4">
                     <div className="flex items-center">
