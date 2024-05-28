@@ -29,9 +29,9 @@ function FriendRecommendations() {
             {friends.map(friend => (
                 <div key={friend.id} className="mb-4">
                     <div className="flex items-center">
-                        <Link to={`/user/${friend.id}`} className="bg-gray-300 h-10 w-10 rounded-full mr-4"></Link>
+                        <Link to={`/user?userId=${friend.id}`} className="bg-gray-300 h-10 w-10 rounded-full mr-4"></Link>
                         <div>
-                            <Link to={`/user/${friend.id}`} className="font-bold">{friend.name} {friend.lastName}</Link>
+                            <Link to={`/user?userId=${friend.id}`} className="font-bold">{friend.name} {friend.lastName}</Link>
                         </div>
                     </div>
                 </div>
