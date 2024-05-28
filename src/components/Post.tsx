@@ -15,7 +15,14 @@ function Posts() {
     const loggedUserId = localStorage.getItem('Id');
 
     useEffect(() => {
-        axiosInstance.get('https://api.forix-isep.com/posts')
+        axiosInstance.get('https://api.forix-isep.com/posts/feed', {
+            params: {
+                depth: 1,
+                recentWeight: 1,
+                commonSubjectsWeight: 1,
+                commonFriendsWeight: 1
+            }
+        })
             .then(response => setPosts(response.data))
             .catch(error => console.error('Error fetching posts:', error));
     }, []);
